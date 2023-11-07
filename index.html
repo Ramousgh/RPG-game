@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getComputerChoice(){
+            let choice = ['Rock', 'Paper', 'Scissors'];
+            let index = Math.floor(Math.random() * choice.length);
+            return choice[index].toUpperCase();
+        }
+        function playerChoice(){
+            const userInput = prompt("Enter your choice: ");
+            if ((/^rock$/i.test(userInput)) || (/^paper$/i.test(userInput)) 
+                || (/^scissors$/i.test(userInput))){
+                return userInput.toUpperCase();
+            }
+        }
+        function playRound(playerSelection, computerSelection){
+            playerSelection = playerChoice();
+            computerSelection = getComputerChoice();
+            alert(`You choose ${playerSelection}, computer choose ${computerSelection}`)
+            if ((playerSelection === 'PAPER' && computerSelection === 'ROCK')||
+                (playerSelection === 'ROCK' && computerSelection === 'SCISSORS')||
+                (playerSelection === 'SCISSORS' && computerSelection === 'PAPER')){
+                return 1;
+                //alert(`You win, ${playerSelection} beats ${computerSelection}`);
+            }else if((playerSelection === 'PAPER' && computerSelection === 'PAPER')||
+                (playerSelection === 'ROCK' && computerSelection === 'ROCK')||
+                (playerSelection === 'SCISSORS' && computerSelection === 'SCISSORS')){
+                return 2;
+                //alert(`${playerSelection} and ${computerSelection} is a tie`);       
+            }else{
+                return 0;
+                //alert(`You lose, ${computerSelection} beats ${playerSelection}`);
+            }
+        }
+        function game(num){
+            let userScore =0,
+                computerScore =0,
+                draw = 0;
+            for (let i = 1; i <= num; i++){
+                let result = playRound();
+                if (result === 1){
+                    userScore += 1;
+                    alert(`You Scored: ${userScore}`);
+                }else if(result === 0){
+                    computerScore += 1;
+                    alert(`The computer Scored: ${computerScore}`)
+                }else{
+                    draw += 1;
+                    alert(`It's a tie: ${draw}`)
+                }
+            }
+            if (userScore > computerScore){
+                alert("You won this round")
+            }else if(userScore === computerScore){
+                alert("This round is a tie")
+            }else{
+                alert("You lost this round, better luck next time")
+            }
+            alert('Game over')
+            
+        }
+        game(5);
+        
+
+       
+
+    </script>
+</body>
+</html>
