@@ -1,24 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="style.css">
+    <script src="./rpg.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
 </head>
 <body>
+    <header id="head">
+        <h1>
+            Welcome to the <span>Rock</span>, <span>Paper</span>, and <span>
+                Scissors game.</span>
+        </h1>
+    </header>
+    <section class="gameplay">
+        <h2>Select one of the buttons, the first to score five wins</h2>
+        <div class="gameplay">
+            <button type="button" class="rock">Rock</button>
+            <button type="button" class="paper">Paper</button>
+            <button type="button" class="scissors">Scissors</button>
+        </div>
+        <div class="displays">
+            <div class="running-score">
+                <p class="player-score">You scored: </p>
+                <p class="computer-score">The computer Scored: </p>
+                <p class="ties">You tie: </p>
+            </div>
+            <p class="final-score">
+                announce winner
+            </p>
+        </div>
+    </section>
+
     <script>
-        function getComputerChoice(){
-            let choice = ['Rock', 'Paper', 'Scissors'];
-            let index = Math.floor(Math.random() * choice.length);
-            return choice[index].toUpperCase();
-        }
-        function playerChoice(){
-            const userInput = prompt("Enter your choice: ");
-            if ((/^rock$/i.test(userInput)) || (/^paper$/i.test(userInput)) 
-                || (/^scissors$/i.test(userInput))){
-                return userInput.toUpperCase();
-            }
-        }
+        
         function playRound(playerSelection, computerSelection){
             playerSelection = playerChoice();
             computerSelection = getComputerChoice();
@@ -26,16 +43,16 @@
             if ((playerSelection === 'PAPER' && computerSelection === 'ROCK')||
                 (playerSelection === 'ROCK' && computerSelection === 'SCISSORS')||
                 (playerSelection === 'SCISSORS' && computerSelection === 'PAPER')){
-                return 1;
-                //alert(`You win, ${playerSelection} beats ${computerSelection}`);
+                //return 1;
+                alert(`You win, ${playerSelection} beats ${computerSelection}`);
             }else if((playerSelection === 'PAPER' && computerSelection === 'PAPER')||
                 (playerSelection === 'ROCK' && computerSelection === 'ROCK')||
                 (playerSelection === 'SCISSORS' && computerSelection === 'SCISSORS')){
-                return 2;
-                //alert(`${playerSelection} and ${computerSelection} is a tie`);       
+                //return 2;
+                alert(`${playerSelection} and ${computerSelection} is a tie`);       
             }else{
-                return 0;
-                //alert(`You lose, ${computerSelection} beats ${playerSelection}`);
+                //return 0;
+                alert(`You lose, ${computerSelection} beats ${playerSelection}`);
             }
         }
         function game(num){
@@ -65,7 +82,7 @@
             alert('Game over')
             
         }
-        game(5);
+       
         
 
        
