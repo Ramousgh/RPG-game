@@ -1,92 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <link rel="stylesheet" href="style.css" />
     <script src="./rpg.js" defer></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
-</head>
-<body>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RPG GAME</title>
+  </head>
+  <body>
     <header id="head">
-        <h1>
-            Welcome to the <span>Rock</span>, <span>Paper</span>, and <span>
-                Scissors game.</span>
-        </h1>
+      <h1>
+        Welcome to the <span>Rock</span>, <span>Paper</span>, and
+        <span> Scissors game.</span>
+      </h1>
     </header>
     <section class="gameplay">
-        <h2>Select one of the buttons, the first to score five wins</h2>
-        <div class="gameplay">
-            <button type="button" class="rock">Rock</button>
-            <button type="button" class="paper">Paper</button>
-            <button type="button" class="scissors">Scissors</button>
+      <h2>Select one of the buttons, the first to score five wins</h2>
+      <div class="gameplay">
+        <button type="button" class="btn">ROCK</button>
+        <button type="button" class="btn">PAPER</button>
+        <button type="button" class="btn">SCISSORS</button>
+      </div>
+      <div class="displays">
+        <div>
+          <p class="player-score">Player's score display</p>
+          <p class="computer-score">Computer's score display</p>
+          <p class="ties">Ties display</p>
         </div>
-        <div class="displays">
-            <div class="running-score">
-                <p class="player-score">You scored: </p>
-                <p class="computer-score">The computer Scored: </p>
-                <p class="ties">You tie: </p>
-            </div>
-            <p class="final-score">
-                announce winner
-            </p>
-        </div>
+        <p class="final-score"></p>
+      </div>
     </section>
-
-    <script>
-        
-        function playRound(playerSelection, computerSelection){
-            playerSelection = playerChoice();
-            computerSelection = getComputerChoice();
-            alert(`You choose ${playerSelection}, computer choose ${computerSelection}`)
-            if ((playerSelection === 'PAPER' && computerSelection === 'ROCK')||
-                (playerSelection === 'ROCK' && computerSelection === 'SCISSORS')||
-                (playerSelection === 'SCISSORS' && computerSelection === 'PAPER')){
-                //return 1;
-                alert(`You win, ${playerSelection} beats ${computerSelection}`);
-            }else if((playerSelection === 'PAPER' && computerSelection === 'PAPER')||
-                (playerSelection === 'ROCK' && computerSelection === 'ROCK')||
-                (playerSelection === 'SCISSORS' && computerSelection === 'SCISSORS')){
-                //return 2;
-                alert(`${playerSelection} and ${computerSelection} is a tie`);       
-            }else{
-                //return 0;
-                alert(`You lose, ${computerSelection} beats ${playerSelection}`);
-            }
-        }
-        function game(num){
-            let userScore =0,
-                computerScore =0,
-                draw = 0;
-            for (let i = 1; i <= num; i++){
-                let result = playRound();
-                if (result === 1){
-                    userScore += 1;
-                    alert(`You Scored: ${userScore}`);
-                }else if(result === 0){
-                    computerScore += 1;
-                    alert(`The computer Scored: ${computerScore}`)
-                }else{
-                    draw += 1;
-                    alert(`It's a tie: ${draw}`)
-                }
-            }
-            if (userScore > computerScore){
-                alert("You won this round")
-            }else if(userScore === computerScore){
-                alert("This round is a tie")
-            }else{
-                alert("You lost this round, better luck next time")
-            }
-            alert('Game over')
-            
-        }
-       
-        
-
-       
-
-    </script>
-</body>
+  </body>
 </html>
