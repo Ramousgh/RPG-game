@@ -5,6 +5,8 @@ const playerScore = document.querySelector(".player-score");
 const computerScore = document.querySelector(".computer-score");
 const ties = document.querySelector(".ties");
 const finalResult = document.querySelector(".final-score");
+const reset = document.querySelector(".reset");
+const div = document.querySelector(".bbb");
 
 // declared global variables
 let choice;
@@ -18,26 +20,21 @@ function getComputerChoice() {
   const index = Math.floor(Math.random() * list.length);
   return list[index];
 }
-// button event and game play
-let i = 0;
-while (true) {
-  buttons.forEach(function (button) {
-    button.addEventListener("click", (e) => {
-      choice = e.target.textContent.toLowerCase();
-      game();
-    });
+//button event and game play
+buttons.forEach(function (button) {
+  button.addEventListener("click", (e) => {
+    choice = e.target.textContent.toLowerCase();
+    game();
+    showReset();
   });
-  if ((userCount || computerCount) === 5) {
-    break;
-  }
-}
+});
 
 // defined a function for one round of game play; returns 1 if player wins,
 // returns 0 if computer wins, and return nothing when it's a tie.
 function playRound(computerSelection, playerSelection) {
   computerSelection = getComputerChoice();
   playerSelection = choice;
-  alert(`You choose ${playerSelection}, computer choose ${computerSelection}`);
+
   if (
     (playerSelection === "paper" && computerSelection === "rock") ||
     (playerSelection === "rock" && computerSelection === "scissors") ||
@@ -49,6 +46,7 @@ function playRound(computerSelection, playerSelection) {
     (playerSelection === "rock" && computerSelection === "rock") ||
     (playerSelection === "scissors" && computerSelection === "scissors")
   ) {
+    return 2;
   } else {
     return 0;
   }
@@ -56,6 +54,7 @@ function playRound(computerSelection, playerSelection) {
 // this function calls the playRound function and displays the result
 function game() {
   let result = playRound();
+
   if (result === 1) {
     userCount += 1;
     playerScore.textContent = `You scored: ${userCount}`;
@@ -66,4 +65,27 @@ function game() {
     draw += 1;
     ties.textContent = `Ties: ${draw}`;
   }
+}
+function showReset() {
+  if (userCount === 5) {
+    finalResult.textContent = "You won this round";
+    reset.style.display = "block";
+    replaceDiv();
+  } else if (computerCount === 5) {
+    finalResult.textContent = "The computer won this round";
+    reset.style.display = "block";
+    replaceDiv();
+  }
+  finalResult.style.color = "#01605a";
+}
+
+reset.addEventListener("click", () => {
+  location.reload();
+});
+function replaceDiv() {
+  let newDiv = document.createElement("div");
+  newDiv.textContent = "Game Over! click the Reset button to replay";
+  newDiv.style.color = "#01605a";
+
+  div.replaceWith(newDiv);
 }
